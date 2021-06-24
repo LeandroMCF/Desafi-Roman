@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Projeto_Roman.Domains;
 using Projeto_Roman.Interfaces;
 using Projeto_Roman.Repositories;
 using System;
@@ -25,6 +26,22 @@ namespace Projeto_Roman.Controllers
         public IActionResult Listar()
         {
             return Ok(_projeto.Listar());
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            _projeto.Deletar(id);
+            
+            return StatusCode(204);
+        }
+
+        [HttpPost]
+        public IActionResult Cadastrar(Equipe equipe)
+        {
+            _projeto.Cadastrar(equipe);
+
+            return StatusCode(202);
         }
     }
 }
