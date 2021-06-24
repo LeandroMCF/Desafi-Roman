@@ -12,6 +12,28 @@ namespace Projeto_Roman.Repositories
     {
         Roman ctx = new Roman();
 
+        public void Atualizar(int id, Projeto att)
+        {
+            Projeto buscando = ctx.Projetos.Find(id);
+
+            if (att.Tema != null)
+            {
+                buscando.Tema = att.Tema;
+            }
+            if (att.Projeto1 != null)
+            {
+                buscando.Projeto1 = att.Projeto1;
+            }
+            if (att.Descricao != null)
+            {
+                buscando.Descricao = att.Descricao;
+            }
+
+            ctx.Projetos.Update(buscando);
+
+            ctx.SaveChanges();
+        }
+
         public void Cadastrar(Projeto novoProjeto)
         {
             ctx.Projetos.Add(novoProjeto);
@@ -28,9 +50,28 @@ namespace Projeto_Roman.Repositories
             ctx.SaveChanges();
         }
 
+        public void Inativar(int id, Projeto inativar)
+        {
+            Projeto buscando = ctx.Projetos.Find(id);
+
+            if (inativar.IdAtividade < 0)
+            {
+                buscando.IdAtividade = inativar.IdAtividade;
+            }
+
+            ctx.Projetos.Update(buscando);
+
+            ctx.SaveChanges();
+        }
+
         public List<Projeto> Listar()
         {
             return ctx.Projetos.ToList();
+        }
+
+        public List<Projeto> ListarAtivos()
+        {
+            return ctx.Projetos.Where(P => P.IdAtividade == 1).ToList();
         }
     }
 }

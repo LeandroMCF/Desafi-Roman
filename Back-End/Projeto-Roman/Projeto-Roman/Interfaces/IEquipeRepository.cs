@@ -11,5 +11,6 @@ namespace Projeto_Roman.Interfaces
         List<Equipe> Listar();
         void Cadastrar(Equipe novaEquipe);
         void Deletar(int id);
+        Equipe BuscarPeloId(int id);
     }
 }

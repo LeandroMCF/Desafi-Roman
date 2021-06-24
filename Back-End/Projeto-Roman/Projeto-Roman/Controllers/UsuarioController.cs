@@ -25,23 +25,63 @@ namespace Projeto_Roman.Controllers
         [HttpGet]
         public IActionResult Listar()
         {
-            return Ok(_usuario.Listar());
+            try
+            {
+                return Ok(_usuario.Listar());
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);           
+            }
+            
         }
 
         [HttpPost]
         public IActionResult Cadastrar(Usuario usuario)
         {
-            _usuario.Cadastrar(usuario);
+            try
+            {
+                _usuario.Cadastrar(usuario);
 
-            return StatusCode(202);
+                return StatusCode(202);
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro);
+            }
+            
         }
 
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
-            _usuario.Deletar(id);
+            try
+            {
+                _usuario.Deletar(id);
 
-            return StatusCode(204);
+                return StatusCode(204);
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);
+            }
+            
+        }
+
+        [HttpPut("NovaEquipe/{id}")]
+        public IActionResult AddEquipe(int id, Usuario novaEquipe)
+        {
+            try
+            {
+                _usuario.NovaEquipe(id, novaEquipe);
+
+                return StatusCode(204);
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);
+            }
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Projeto_Roman.Interfaces
         void Cadastrar(Usuario novoUsuario); 
         void Deletar(int id);
         Usuario Login(string email, string senha);
+        void NovaEquipe(int id, Usuario novaEquipe);
     }
 }

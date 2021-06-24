@@ -25,23 +25,65 @@ namespace Projeto_Roman.Controllers
         [HttpGet]
         public IActionResult Listar()
         {
-            return Ok(_projeto.Listar());
+            try
+            {
+                return Ok(_projeto.Listar());
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro);
+            }
+
         }
 
         [HttpPost]
         public IActionResult Cadastrar(Projeto novoProjeto)
         {
-            _projeto.Cadastrar(novoProjeto);
+            try
+            {
+                _projeto.Cadastrar(novoProjeto);
 
-            return StatusCode(202);
+                return StatusCode(202);
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro);
+            }
+
         }
 
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
-            _projeto.Deletar(id);
+            try
+            {
+                _projeto.Deletar(id);
 
-            return StatusCode(204);
+                return StatusCode(204);
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Editar(int id, Projeto att)
+        {
+            try
+            {
+                _projeto.Atualizar(id, att);
+
+                return StatusCode(204);
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro);
+            }
         }
     }
 }

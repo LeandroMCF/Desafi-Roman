@@ -37,5 +37,19 @@ namespace Projeto_Roman.Repositories
         {
             return ctx.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
+
+        public void NovaEquipe(int id, Usuario novaEquipe)
+        {
+            Usuario buscando = ctx.Usuarios.Find(id);
+
+            if (novaEquipe.IdEquipe != null)
+            {
+                buscando.IdEquipe = novaEquipe.IdEquipe;
+            }
+
+            ctx.Usuarios.Update(buscando);
+
+            ctx.SaveChanges();
+        }
     }
 }

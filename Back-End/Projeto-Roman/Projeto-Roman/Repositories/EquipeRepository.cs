@@ -11,6 +11,12 @@ namespace Projeto_Roman.Repositories
     public class EquipeRepository : IEquipeRepository
     {
         Roman ctx = new Roman();
+
+        public Equipe BuscarPeloId(int id)
+        {
+            return ctx.Equipes.Find(id);
+        }
+
         public void Cadastrar(Equipe novaEquipe)
         {
             ctx.Equipes.Add(novaEquipe);
